@@ -9,10 +9,10 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var redis_r = require('./routes/redis');
 
+var app = express();
+
 var redis = require('redis');
 var RedisStore = require('connect-redis')(express);
-
-var app = express();
 
 // config redis
 app.configure(function() {
