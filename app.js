@@ -7,28 +7,28 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var redis_r = require('./routes/redis');
+// var redis_r = require('./routes/redis');
 
 var app = express();
 
-var redis = require('redis');
-var RedisStore = require('connect-redis')(express);
+// var redis = require('redis');
+// var RedisStore = require('connect-redis')(express);
 
 // config redis
-app.configure(function() {
-  app.use(express.cookieParser('keyboard-cat'));
-  app.use(express.session({
-        store: new RedisStore({
-            host: process.env.REDIS_HOST || 'localhost',
-            port: process.env.REDIS_PORT || 6379,
-            db: process.env.REDIS_DB || 0
-        }),
-        cookie: {
-            expires: false,
-            maxAge: 30 * 24 * 60 * 60 * 1000
-        }
-    }));
-});
+// app.configure(function() {
+//   app.use(express.cookieParser('keyboard-cat'));
+//   app.use(express.session({
+//         store: new RedisStore({
+//             host: process.env.REDIS_HOST || 'localhost',
+//             port: process.env.REDIS_PORT || 6379,
+//             db: process.env.REDIS_DB || 0
+//         }),
+//         cookie: {
+//             expires: false,
+//             maxAge: 30 * 24 * 60 * 60 * 1000
+//         }
+//     }));
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
