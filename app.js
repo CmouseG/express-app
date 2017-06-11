@@ -15,20 +15,20 @@ var RedisStore = require('connect-redis')(express);
 var app = express();
 
 // config redis
-app.configure(function() {
-  app.use(express.cookieParser('keyboard-cat'));
-  app.use(express.session({
-        store: new RedisStore({
-            host: process.env.REDIS_HOST || 'localhost',
-            port: process.env.REDIS_PORT || 6379,
-            db: process.env.REDIS_DB || 0
-        }),
-        cookie: {
-            expires: false,
-            maxAge: 30 * 24 * 60 * 60 * 1000
-        }
-    }));
-});
+// app.configure(function() {
+//   app.use(express.cookieParser('keyboard-cat'));
+//   app.use(express.session({
+//         store: new RedisStore({
+//             host: process.env.REDIS_HOST || 'localhost',
+//             port: process.env.REDIS_PORT || 6379,
+//             db: process.env.REDIS_DB || 0
+//         }),
+//         cookie: {
+//             expires: false,
+//             maxAge: 30 * 24 * 60 * 60 * 1000
+//         }
+//     }));
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
