@@ -9,13 +9,13 @@ FROM mkenney/npm
 #RUN apt-get install -y nodejs npm
 
 # 将目录中的文件添加至镜像的 /srv/exapp 目录中
-ADD ./* /srv/exapp
+ADD . /srv/exapp
 
 # 设置工作目录
 WORKDIR /srv/exapp
 
 # 设置淘宝镜像源
-RUN npm config set registry https://registry.npm.taobao.org
+#RUN npm config set registry https://registry.npm.taobao.org
 
 # 安装 Node 依赖库
 RUN npm install
