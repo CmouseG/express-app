@@ -14,8 +14,8 @@ var app = express();
 // var redis = require('redis');
 // var RedisStore = require('connect-redis')(express);
 
-var redis = require('redis');
-// var RedisStore = require('connect-redis')(express);
+// var redis = require('redis');
+var RedisStore = require('connect-redis')(express);
 
 // config redis
 // app.configure(function() {
