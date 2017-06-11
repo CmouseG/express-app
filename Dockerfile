@@ -9,7 +9,7 @@ FROM mkenney/npm
 #RUN apt-get install -y nodejs npm
 
 # 将目录中的文件添加至镜像的 /srv/exapp 目录中
-ADD . /srv/exapp
+ADD ./* /srv/exapp
 
 # 设置工作目录
 WORKDIR /srv/exapp
@@ -24,4 +24,4 @@ RUN npm install
 EXPOSE 3000
 
 # 设置启动时默认运行命令
-CMD ["node", "/srv/exapp/app"]
+CMD ["npm", "start"]
