@@ -7,8 +7,28 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var redis_r = require('./routes/redis');
+
+var redis = require('redis');
+var RedisStore = require('connect-redis')(express);
 
 var app = express();
+
+// config redis
+app.configure(function() {
+  app.use(express.cookieParser('keyboard-cat'));
+  app.use(express.session({
+        store: new RedisStore({
+            host: process.env.REDIS_HOST || 'localhost',
+            port: process.env.REDIS_PORT || 6379,
+            db: process.env.REDIS_DB || 0
+        }),
+        cookie: {
+            expires: false,
+            maxAge: 30 * 24 * 60 * 60 * 1000
+        }
+    }));
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,6 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/redis', redis_r);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
