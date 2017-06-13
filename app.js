@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -11,11 +12,21 @@ var redis_r = require('./routes/redis');
 
 var app = express();
 
+var port = process.env.MONGODB_PORT_27017_TCP_PORT;
+var addr = process.env.MONGODB_PORT_27017_TCP_ADDR;
+var instance = process.env.MONGODB_INSTANCE_NAME;
+var password = process.env.MONGODB_PASSWORD;
+var username = process.env.MONGODB_USERNAME;
+
+// 'mongodb://user:pass@localhost:port/database'
+mongoose.connect('mongodb://' + username + ':' + password +'@' + addr + ':' + port + '/' + instance);
+var Records = mongoose.model('Records', { name: {type: String, default:'any'}, time: {type: Date, default: Date.now} });
+
 // var redis = require('redis');
 // var RedisStore = require('connect-redis')(express);
 
 // var redis = require('redis');
-var RedisStore = require('connect-redis')(express);
+// var RedisStore = require('connect-redis')(express);
 
 // config redis
 // app.configure(function() {
